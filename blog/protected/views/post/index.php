@@ -8,13 +8,32 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create Post', 'url'=>array('create')),
-	array('label'=>'Manage Post', 'url'=>array('admin')),
+	//array('label'=>'Manage Post', 'url'=>array('admin')),
 );
 ?>
 
 <h1>Posts</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php 
+$this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
-)); ?>
+)); 
+?>
+
+<?php 
+//desse codigo pra baixo ta gerando 2 no results found
+if(!empty($_GET['categoria'])): 
+?>
+
+<h1>Posts Tagged with <i><?php echo CHtml::encode($_GET['categoria']); ?></i></h1>
+
+<?php endif; ?>
+ 
+<?php
+$this->widget('zii.widgets.CListView', array(
+    'dataProvider'=>$dataProvider,
+    'itemView'=>'_view',
+    'template'=>"{items}\n{pager}",
+)); 
+?>

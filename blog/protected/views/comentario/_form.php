@@ -16,15 +16,15 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'idComent'); ?>
-		<?php echo $form->textField($model,'idComent'); ?>
-		<?php echo $form->error($model,'idComent'); ?>
+		<?php echo $form->labelEx($model,'autor'); ?>
+		<?php echo $form->textField($model,'autor',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'autor'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'nome'); ?>
-		<?php echo $form->textField($model,'nome',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'nome'); ?>
+		<?php echo $form->labelEx($model,'email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'email'); ?>
 	</div>
 
 	<div class="row">
@@ -33,11 +33,6 @@
 		<?php echo $form->error($model,'texto'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'post_idPost'); ?>
-		<?php echo $form->textField($model,'post_idPost'); ?>
-		<?php echo $form->error($model,'post_idPost'); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

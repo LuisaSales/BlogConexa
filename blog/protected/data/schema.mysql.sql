@@ -34,7 +34,7 @@ INSERT INTO post (titulo, texto, autor, data, imagem, usuario_id, categoria) VAL
 INSERT INTO post (titulo, texto, autor, data, imagem, usuario_id, categoria) VALUES ('ti3', 'lore ipsulum', 'test3', '2019-08-12', '', '3', 'financeiro');
 INSERT INTO post (titulo, texto, autor, data, imagem, usuario_id, categoria) VALUES ('ti4', 'lore ipsulum', 'test4', '2019-08-13', '', '4', 'agenda');
 
-INSERT INTO comentario (nome, texto, post_idPost) VALUES ('pessoa1', 'lore ipsulum', '1');
+INSERT INTO comentario (autor, texto, post_idPost, email, data) VALUES ('pessoa1', 'lore ipsulum', '1', 'pessoa1@usuario.com', '2019-08-20');
 INSERT INTO comentario (nome, texto, post_idPost) VALUES ('pessoa2', 'lore ipsulum', '2');
 INSERT INTO comentario (nome, texto, post_idPost) VALUES ('pessoa3', 'lore ipsulum', '3');
 INSERT INTO comentario (nome, texto, post_idPost) VALUES ('pessoa4', 'lore ipsulum', '4');

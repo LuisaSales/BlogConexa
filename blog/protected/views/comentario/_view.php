@@ -9,8 +9,8 @@
 	<?php echo CHtml::link(CHtml::encode($data->idComent), array('view', 'id'=>$data->idComent)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('nome')); ?>:</b>
-	<?php echo CHtml::encode($data->nome); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('autor')); ?>:</b>
+	<?php echo CHtml::encode($data->autor); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('texto')); ?>:</b>

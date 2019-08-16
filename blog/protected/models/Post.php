@@ -11,14 +11,9 @@ class Post extends BasePost
 	public function rules()
 	{
 		return array(
-			array('title, content, status', 'required'),
-			array('title', 'length', 'max'=>128),
-			array('status', 'in', 'range'=>array(1,2,3)),
-			array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/',
-				'message'=>'Tags can only contain word characters.'),
-			array('tags', 'normalizeTags'),
-	 
-			array('title, status', 'safe', 'on'=>'search'),
+			array('titulo, texto, categoria', 'required'),
+			array('titulo', 'length', 'max'=>128),
+			array('titulo', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -37,15 +32,62 @@ class Post extends BasePost
 		return implode(', ',$tags);
 	} 
 
-	public function relations(){
+	public function relations()
+	{
     return array(
         'author' => array(self::BELONGS_TO, 'Usuario', 'idUsuario'),
         'comments' => array(self::HAS_MANY, 'Comentario', 'idPost',
-        	'condition'=>'comments.status='.Comentario::STATUS_APPROVED,
-        	'order'=>'comments.create_time DESC'),
-        'commentCount' => array(self::STAT, 'Comentario', 'idPost',
-        	'condition'=>'status='.Comentario::STATUS_APPROVED),
+        	'order'=>'comentario.data DESC'),
+        'commentCount' => array(self::STAT, 'Comentario', 'post_idPost',),
     );
+	}
+
+	protected function beforeSave()
+	{
+		if(parent::beforeSave())
+		{
+			$this->data=date("Y-m-d H:i:s");
+
+			if($this->isNewRecord)
+			{
+				$this->autor=Yii::app()->user->name;	
+				$this->usuario_id=Yii::app()->user->id;
+				
+			}
+
+			return true;
+		}
+		else
+			return false;
+	}
+
+	public function addComment($comment)
+	{
+		$comment->post_idPost=$this->id;
+    	return $comment->save();
+
+	}
+
+	protected function newComment($post)
+	{
+		$comment=new Comentario;
+	 
+		if(isset($_POST['ajax']) && $_POST['ajax']==='comment-form')
+		{
+			echo CActiveForm::validate($comment);
+			Yii::app()->end();
+		}
+	 
+		if(isset($_POST['Comentario']))
+		{
+			$comment->attributes=$_POST['Comentario'];
+			if($post->addComment($comment))
+			{
+				Yii::app()->user->setFlash('commentSubmitted','Thank you for your comment.');
+				$this->refresh();
+			}
+		}
+		return $comment;
 	}
 
 	/*Acessar o autor e comentario de um post
@@ -59,15 +101,3 @@ class Post extends BasePost
 	}
 	*/
 }
-
-	/*//embelezador de URL
-	class Post extends CActiveRecord
-	{
-		public function getUrl()
-		{
-			return Yii::app()->createUrl('post/view', array(
-				'idPost'=>$this->id,
-				'titulo'=>$this->title,
-			));
-		}
-	}*/

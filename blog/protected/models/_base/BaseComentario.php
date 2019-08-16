@@ -10,9 +10,11 @@
  * followed by relations of table "comentario" available as properties of the model.
  *
  * @property integer $idComent
- * @property string $nome
+ * @property string $autor
  * @property string $texto
  * @property integer $post_idPost
+ * @property string $email
+ * @property string $data
  *
  * @property Post $postIdPost
  */
@@ -31,17 +33,17 @@ abstract class BaseComentario extends GxActiveRecord {
 	}
 
 	public static function representingColumn() {
-		return 'nome';
+		return 'autor';
 	}
 
 	public function rules() {
 		return array(
-			array('idComent, nome, post_idPost', 'required'),
+			array('idComent, autor, post_idPost, email, data', 'required'),
 			array('idComent, post_idPost', 'numerical', 'integerOnly'=>true),
-			array('nome', 'length', 'max'=>100),
+			array('autor, email', 'length', 'max'=>100),
 			array('texto', 'safe'),
 			array('texto', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('idComent, nome, texto, post_idPost', 'safe', 'on'=>'search'),
+			array('idComent, autor, texto, post_idPost, email, data', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,9 +61,11 @@ abstract class BaseComentario extends GxActiveRecord {
 	public function attributeLabels() {
 		return array(
 			'idComent' => Yii::t('app', 'Id Coment'),
-			'nome' => Yii::t('app', 'Nome'),
+			'autor' => Yii::t('app', 'Autor'),
 			'texto' => Yii::t('app', 'Texto'),
 			'post_idPost' => null,
+			'email' => Yii::t('app', 'Email'),
+			'data' => Yii::t('app', 'Data'),
 			'postIdPost' => null,
 		);
 	}
@@ -70,9 +74,11 @@ abstract class BaseComentario extends GxActiveRecord {
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('idComent', $this->idComent);
-		$criteria->compare('nome', $this->nome, true);
+		$criteria->compare('autor', $this->autor, true);
 		$criteria->compare('texto', $this->texto, true);
 		$criteria->compare('post_idPost', $this->post_idPost);
+		$criteria->compare('email', $this->email, true);
+		$criteria->compare('data', $this->data, true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

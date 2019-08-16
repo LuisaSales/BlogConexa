@@ -22,7 +22,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'idComent',
-		'nome',
+		'autor',
 		'texto',
 		'post_idPost',
 	),

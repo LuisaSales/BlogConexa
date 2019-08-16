@@ -9,7 +9,7 @@ class UserIdentity extends CUserIdentity
         $user=Usuario::model()->find('LOWER(username)=?',array($username));
         if($user===null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		//PESQUISAR SOBRE BEFORE SAVING PASSWORD MD5, para que as proximas senhas sejam geradas criptografadas	
+		
         else if(md5($this->password)!==$user->senha)
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         else
@@ -23,7 +23,7 @@ class UserIdentity extends CUserIdentity
  
     public function getId()
     {
-        return $this->username;
+        return $this->_id;
     }
 }
 
