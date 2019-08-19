@@ -8,34 +8,33 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Post', 'url'=>array('index')),
-	array('label'=>'Create Post', 'url'=>array('create')),
-	array('label'=>'Update Post', 'url'=>array('update', 'id'=>$model->idPost)),
-	array('label'=>'Delete Post', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->idPost),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Post', 'url'=>array('admin')),
+	array('label'=>'Listar Postagem', 'url'=>array('index')),
+	array('label'=>'Criar Postagem', 'url'=>array('create')),
+	array('label'=>'Editar Postagem', 'url'=>array('update', 'id'=>$model->idPost)),
+	//array('label'=>'Delete Post', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->idPost),'confirm'=>'Are you sure you want to delete this item?')),
+	//array('label'=>'Manage Post', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Post #<?php echo $model->idPost; ?></h1>
+<h1>Post: #<?php echo $model->idPost; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'idPost',
 		'titulo',
 		'texto',
 		'autor',
 		'data',
 		'imagem',
-		'usuario_id',
 		'categoria',
 	),
 )); ?>
 
 <div id="comments">
+	<div id="footer"></div>
 	<?php if ($model->commentCount >= 1) : ?>
 	<h3>
-		<?php echo $model->commentCount . 'comment(s)'; ?>
+		<?php echo $model->commentCount . ' comentário(s)';  ?>
 	</h3>
 
 	<?php $this->renderPartial('_comments', array(
@@ -43,8 +42,10 @@ $this->menu=array(
 			'comments' => $model->comentario,
 		)); ?>
 	<?php endif; ?>
+	
+	<div id="footer"></div>
 
-	<h3>Leave a Comment</h3>
+	<h3>Deixe um comentário:</h3>
 
 	<?php if (Yii::app()->user->hasFlash('commentSubmitted')) : ?>
 	<div class="flash-success">

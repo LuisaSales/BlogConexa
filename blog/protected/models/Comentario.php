@@ -25,9 +25,9 @@ class Comentario extends BaseComentario
 	{
 		return array(
 			'idComent' => 'Id',
-			'texto' => 'Comment',
+			'texto' => 'Comentário',
 			'data' => 'Create Time',
-			'autor' => 'Name',
+			'autor' => 'Nome',
 			'email' => 'Email',
 			'post_id' => 'Post',
 		);
@@ -38,7 +38,6 @@ class Comentario extends BaseComentario
 		if (parent::beforeSave()) {
 			if ($this->isNewRecord)
 				$this->data=date("Y-m-d H:i:s");
-				//$this->post_idPost=20;
 			return true;
 		} else
 			return false;

@@ -152,8 +152,8 @@ class PostController extends Controller
 			'order' => 'data DESC',
 			'with' => 'commentCount',
 		));
-		if (isset($_GET['tag']))
-			$criteria->addSearchCondition('tags', $_GET['tag']);
+		if (isset($_GET['categoria']))
+			$criteria->addSearchCondition('categoria', $_GET['categoria']);
 
 		$dataProvider = new CActiveDataProvider('Post', array(
 			'pagination' => array(
@@ -181,6 +181,7 @@ class PostController extends Controller
 			'model' => $model,
 		));
 	}
+	
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

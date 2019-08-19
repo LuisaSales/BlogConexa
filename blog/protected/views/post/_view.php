@@ -5,12 +5,8 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idPost')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->idPost), array('view', 'id' => $data->idPost)); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('titulo')); ?>:</b>
-	<?php echo CHtml::encode($data->titulo); ?>
+	<?php echo CHtml::link(CHtml::encode($data->titulo), array('view', 'id' => $data->idPost)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('texto')); ?>:</b>
@@ -29,16 +25,11 @@
 	<?php echo CHtml::encode($data->imagem); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('usuario_id')); ?>:</b>
-	<?php echo CHtml::encode($data->usuario_id); ?>
-	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('categoria')); ?>:</b>
 	<?php echo CHtml::encode($data->categoria); ?>
 	<br />
 
-	*/ ?>
 
 </div>
 

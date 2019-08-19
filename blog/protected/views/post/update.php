@@ -9,13 +9,13 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Post', 'url'=>array('index')),
-	array('label'=>'Create Post', 'url'=>array('create')),
-	array('label'=>'View Post', 'url'=>array('view', 'id'=>$model->idPost)),
-	array('label'=>'Manage Post', 'url'=>array('admin')),
+	array('label'=>'Listar Postagem', 'url'=>array('index')),
+	array('label'=>'Criar Postagem', 'url'=>array('create')),
+	array('label'=>'Ver Postagem', 'url'=>array('view', 'id'=>$model->idPost)),
+	//array('label'=>'Manage Post', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Post <?php echo $model->idPost; ?></h1>
+<h1>Editar Post: #<?php echo $model->idPost; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

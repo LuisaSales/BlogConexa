@@ -36,7 +36,7 @@ class Post extends BasePost
 	{
     return array(
         'author' => array(self::BELONGS_TO, 'Usuario', 'idUsuario'),
-        'comments' => array(self::HAS_MANY, 'Comentario', 'idPost',
+        'comentario' => array(self::HAS_MANY, 'Comentario', 'post_idPost',
         	'order'=>'comentario.data DESC'),
         'commentCount' => array(self::STAT, 'Comentario', 'post_idPost',),
     );
@@ -63,7 +63,7 @@ class Post extends BasePost
 
 	public function addComment($comment)
 	{
-		$comment->post_idPost=$this->id;
+		$comment->post_idPost=$this->idPost;
     	return $comment->save();
 
 	}
@@ -83,7 +83,7 @@ class Post extends BasePost
 			$comment->attributes=$_POST['Comentario'];
 			if($post->addComment($comment))
 			{
-				Yii::app()->user->setFlash('commentSubmitted','Thank you for your comment.');
+				Yii::app()->user->setFlash('commentSubmitted','Obrigado por comentar.');
 				$this->refresh();
 			}
 		}
