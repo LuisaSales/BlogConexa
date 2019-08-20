@@ -18,7 +18,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('data')); ?>:</b>
-	<?php echo CHtml::encode($data->data); ?>
+	<?php echo CHtml::encode(date('d-m-Y',  strtotime($data->data))); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('imagem')); ?>:</b>

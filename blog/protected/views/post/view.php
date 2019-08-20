@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Post: #<?php echo $model->idPost; ?></h1>
+<h1><?php echo $model->titulo; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -29,6 +29,8 @@ $this->menu=array(
 		'categoria',
 	),
 )); ?>
+
+
 
 <div id="comments">
 	<div id="footer"></div>

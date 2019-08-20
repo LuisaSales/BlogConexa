@@ -47,7 +47,7 @@ class Post extends BasePost
 		if(parent::beforeSave())
 		{
 			$this->data=date("Y-m-d H:i:s");
-
+	
 			if($this->isNewRecord)
 			{
 				$this->autor=Yii::app()->user->name;	
@@ -60,7 +60,7 @@ class Post extends BasePost
 		else
 			return false;
 	}
-
+	
 	public function addComment($comment)
 	{
 		$comment->post_idPost=$this->idPost;

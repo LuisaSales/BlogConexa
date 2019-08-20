@@ -1,7 +1,11 @@
 <?php foreach ($comments as $comment) : ?>
 
 <div class="comment" id="c<?php echo $comment->idComent; ?>">
+    <div class="time">
+        <!--dar o echo se precisar mostrar data-->
+        <?php $comment->data; ?>
 
+    </div>
 
     <div class="author">
 
@@ -16,14 +20,9 @@
 
     </div>
 
-    <div class="time">
 
-        <?php $comment->data; ?>
-        <br>
+    <br \>
 
-    </div>
-
-
-</div><!-- comment -->
+</div>
 
 <?php endforeach; ?>
